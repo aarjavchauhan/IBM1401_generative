@@ -1,12 +1,19 @@
+let result
+function preload() {
+  result = loadStrings('manual.txt')
+}
+
 function setup() {
 
-    createCanvas(200,200);
-    background(50);
-    textSize(20);
-    noStroke();
+    createCanvas(200,200)
+    background(50)
+    textSize(20)
+    noStroke()
 
-    var words = RiTa.tokenize("The elephant took a bite!")
-    for (var i=0, j = words.length; i<j; i++) {
-        text(words[i], 50, 50 + i*20);
+    for (var i = 0; i < result.length-1; i++) {
+      var words = RiTa.tokenize(result[i])
+      for (var j=0; j < words.length; j++) {
+          console.log(words[j])
+      }
     }
   }
