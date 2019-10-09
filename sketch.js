@@ -3,9 +3,12 @@ function preload() {
   result = loadStrings('manual.txt')
 }
 
+var wordsArray = []
+var partsOfSpeech = []
+
 function setup() {
 
-  createCanvas(200,200)
+  createCanvas(600,600)
   background(50)
   textSize(20)
   noStroke()
@@ -13,7 +16,8 @@ function setup() {
   for (var i = 0; i < result.length-1; i++) {
     var words = RiTa.tokenize(result[i])
     for (var j=0; j < words.length; j++) {
-      console.log(words[j])
+      wordsArray.push(words[j])
+      partsOfSpeech.push(RiTa.getPosTags(words[j]))
     }
   }
 }
