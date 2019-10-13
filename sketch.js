@@ -4,7 +4,7 @@ let amplitude;
 function preload() {
   result = loadStrings('manual.txt')
   soundFormats('mp3');
-  song = loadSound('assets/IBM1401.mp3');
+  song = loadSound('assets/IBM1402.mp3');
 }
 
 var wordsArray = []
