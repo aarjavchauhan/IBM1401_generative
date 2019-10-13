@@ -23,11 +23,11 @@ class Point {
       colorThis = color(104, 121, 21, transparencyCounter)
     } else if (this.pos == ".") {
       colorThis = color(170, 144, 44, transparencyCounter)
-    } 
+    }
 
     noStroke()
       fill(colorThis)
-      circle(this.x, this.y, 5)
+      circle(this.x, this.y, soundPlay())
       stroke(colorThis)
       line(this.x, this.y, this.x+this.word.length*3, this.y+this.word.length*3)
       this.hasBeenDisplayed = true

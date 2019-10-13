@@ -1,5 +1,6 @@
 let result
 let song;
+let amplitude;
 function preload() {
   result = loadStrings('manual.txt')
   soundFormats('mp3');
@@ -28,6 +29,8 @@ var textY = 0
 var numberArray = [4, 5, 6, 7, 8, 9]
 var numberRepeatArray = []
 
+var highestAmplitude = 0.00000
+
 function setup() {
 
   createCanvas(600,600)
@@ -35,7 +38,7 @@ function setup() {
 
   createRitaArrays()
   setTextInformation()
-
+  soundSetup()
 }
 
 function createRitaArrays(){
@@ -55,6 +58,7 @@ function draw() {
   drawPoints()
   showArtist()
   showNumbers()
+  soundPlay()
 }
 
 function determinePointTransparency(){
@@ -94,17 +98,12 @@ function drawPoints()
     if (!points[i].hasBeenDisplayed){
      points[i].display()
    }
-    //console.log(i);
   }
 
 }
 
 function makePoint(x,y,word,pos){
   points.push(new Point(x, y, word, pos[0]))
-//  console.log(pos);
-  // for (var i = 0; i < distinctPartsOfSpeech.length; i++) {
-  //   if(distinctPartsOfSpeech[i]
-  // }
   if (distinctPartsOfSpeech.indexOf(pos[0]) == -1) {
     distinctPartsOfSpeech.push(pos[0])
   }
@@ -118,7 +117,6 @@ for(var i = 0; i < a.length; ++i) {
         result[a[i]] = 0;
     ++result[a[i]];
 }
-//console.log(result);
 }
 
 function showArtist(){
@@ -173,19 +171,33 @@ function showNumbers()
         rotate(PI)
         text(number, 0, 0)
         numberRepeatArray[repeatState] --
-        console.log( numberRepeatArray);
     }
   pop()
 }
 
+function soundSetup(){
+  amplitude = new p5.Amplitude()
+  song.play()
 
-function mousePressed() {
-  if (song.isPlaying()) {
-    // .isPlaying() returns a boolean
-    song.stop();
-  //  background(255, 0, 0);
-  } else {
-    song.play();
-//    background(0, 255, 0);
-  }
 }
+
+function soundPlay(){
+  var level = amplitude.getLevel()
+  if (level >= highestAmplitude) {
+    highestAmplitude = level
+  }
+  var radius = Math.round(map(level, 0, 1, 3, 15))
+  console.log(radius)
+  return radius
+}
+
+// function mousePressed() {
+//   if (song.isPlaying()) {
+//     // .isPlaying() returns a boolean
+//     song.stop();
+//   //  background(255, 0, 0);
+//   } else {
+//     song.play();
+// //    background(0, 255, 0);
+//   }
+// }
