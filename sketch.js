@@ -1,6 +1,9 @@
 let result
+let song;
 function preload() {
   result = loadStrings('manual.txt')
+  soundFormats('mp3');
+  song = loadSound('assets/IBM1401.mp3');
 }
 
 var wordsArray = []
@@ -32,6 +35,7 @@ function setup() {
 
   createRitaArrays()
   setTextInformation()
+
 }
 
 function createRitaArrays(){
@@ -152,7 +156,7 @@ function setTextInformation()
   textCheck.fill(0)
   albumArray = albumString.split('')
   for (var i = 0; i < numberArray.length; i++) {
-    numberRepeatArray[i] = Math.floor(random(15, 40))
+    numberRepeatArray[i] = Math.floor(random(40, 70))
   }
 }
 
@@ -172,4 +176,16 @@ function showNumbers()
         console.log( numberRepeatArray);
     }
   pop()
+}
+
+
+function mousePressed() {
+  if (song.isPlaying()) {
+    // .isPlaying() returns a boolean
+    song.stop();
+  //  background(255, 0, 0);
+  } else {
+    song.play();
+//    background(0, 255, 0);
+  }
 }
