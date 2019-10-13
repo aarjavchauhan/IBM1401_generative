@@ -9,9 +9,7 @@ class Point {
   }
 
   display(){
-    //console.log(this.pos)
     push()
-  //  console.log(this.pos);
     let colorThis = color(0,0,0,transparencyCounter)
     if (this.pos == "nn") {
       colorThis = color(165, 184, 128, transparencyCounter)
